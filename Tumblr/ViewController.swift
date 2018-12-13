@@ -7,18 +7,9 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell") as! photoCell
-        return cell
-    }
-    
     
     
     @IBOutlet weak var photoFeed: UITableView!
@@ -28,6 +19,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        photoFeed.delegate = self
+        photoFeed.dataSource = self
         
         // Network request snippet
         let url = URL(string: "https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")!
@@ -47,11 +40,42 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 self.posts = responseDictionary["posts"] as! [[String: Any]]
                 
                 // TODO: Reload the table view
-                
+                self.photoFeed.reloadData()
             }
         }
         task.resume()
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = photoFeed.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! photoCell
+        let post = posts[indexPath.row]
+        if let photos = post["photos"] as? [[String: Any]] {
+            // photos is NOT nil, we can use it!
+            // TODO: Get the photo url
+            // 1.
+            let photo = photos[0]
+            // 2.
+            let originalSize = photo["original_size"] as! [String: Any]
+            // 3.
+            let urlString = originalSize["url"] as! String
+            // 4.
+            let url = URL(string: urlString)
+            cell.picture.af_setImage(withURL: url!)
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 210.0;//Choose your custom row height
+    }
+    
+    
+    
     
 
 
