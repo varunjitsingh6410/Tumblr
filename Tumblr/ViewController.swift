@@ -112,9 +112,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! PhotoDetailsViewController
-        let cell = sender as! UITableViewCell
+        let cell = sender as! photoCell
         let indexPath = photoFeed.indexPath(for: cell)!
-        
+        vc.image = cell.picture.image
+        print("test")
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

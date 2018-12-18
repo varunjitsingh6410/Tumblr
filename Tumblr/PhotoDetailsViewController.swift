@@ -12,6 +12,7 @@ class PhotoDetailsViewController: UIViewController {
     
     
     @IBOutlet weak var postPic: UIImageView!
+    var image: UIImage!
     
     
     
@@ -20,6 +21,7 @@ class PhotoDetailsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        postPic.image = image
     }
     
     
