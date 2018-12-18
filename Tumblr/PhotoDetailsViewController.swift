@@ -12,7 +12,10 @@ class PhotoDetailsViewController: UIViewController {
     
     
     @IBOutlet weak var postPic: UIImageView!
+    @IBOutlet weak var postLabel: UILabel!
+    
     var image: UIImage!
+    var postStr: String! 
     
     
     

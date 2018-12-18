@@ -68,7 +68,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="275"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtb-63-RUz">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtb-63-RUz">
                                 <rect key="frame" x="16" y="347" width="343" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -80,6 +80,7 @@
                         <viewLayoutGuide key="safeArea" id="xuf-ds-M7i"/>
                     </view>
                     <connections>
+                        <outlet property="postLabel" destination="vtb-63-RUz" id="Mxl-z1-8Pz"/>
                         <outlet property="postPic" destination="D3f-v4-oPS" id="N0t-Jz-N5L"/>
                     </connections>
                 </viewController>
